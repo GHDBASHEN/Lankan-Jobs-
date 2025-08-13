@@ -10,6 +10,7 @@ import Register from './Pages/Register';
 import Dashboard from './Pages/Dashboard';
 import UploadResume from './Pages/UploadResume';
 import ProtectedRoute from './Components/ProtectedRoute';
+import PostJob from './Pages/PostJob';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path="/upload-resume" element={<ProtectedRoute role="Job Seeker"><UploadResume /></ProtectedRoute>} />
+          <Route path="/post-job" element={<ProtectedRoute><PostJob /></ProtectedRoute>} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

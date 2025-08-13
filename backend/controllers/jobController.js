@@ -1,4 +1,4 @@
-import { Job } from '../models/Job.js'; // ERROR: Unable to resolve module '../models/job.js'
+import { Job } from '../models/job.js';
 
 export const createJob = async (req, res) => {
   try {

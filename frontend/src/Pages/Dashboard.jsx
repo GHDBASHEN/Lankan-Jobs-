@@ -15,7 +15,7 @@ export default function Dashboard() {
 
         {user.type === 'Employer' && (
           <div className="mt-4">
-            <Link to="/jobs/new" className="bg-indigo-600 text-white px-3 py-1 rounded">Post a job</Link>
+           <Link to="/post-job" className="bg-indigo-600 text-white px-3 py-1 rounded">Post a job</Link>
             {/* employers could see their posted jobs & applicants here */}
           </div>
         )}
