@@ -10,4 +10,9 @@ const getByJob = async (jobId) => {
   return data;
 };
 
-export default { apply, getByJob };
+const getAppliedJobs = async () => {
+    const { data } = await api.get('/applications/my-applications');
+    return data;
+};
+
+export default { apply, getByJob, getAppliedJobs };
