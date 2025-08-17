@@ -68,5 +68,5 @@ Follow these steps to run the project locally.
 
 #### 1. Clone Repository  
 ```bash
-git clone https://github.com/your-username/lankan-jobs.git
+git clone https://github.com/GHDBASHEN/Lankan-Jobs.git
 cd lankan-jobs
