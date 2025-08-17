@@ -11,6 +11,7 @@ export default function PostJob() {
     salary: "",
     job_type: "Full-time",
   });
+  const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
 
   if (!user || user.type !== "Employer") {
@@ -28,12 +29,24 @@ export default function PostJob() {
     });
   };
 
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0]);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
+    const data = new FormData();
+    for (const key in formData) {
+      data.append(key, formData[key]);
+    }
+    if (image) {
+      data.append('image', image);
+    }
+
     try {
-      await jobService.create(formData);
+      await jobService.create(data);
       alert("Job posted successfully!");
       setFormData({
         title: "",
@@ -42,6 +55,7 @@ export default function PostJob() {
         salary: "",
         job_type: "Full-time",
       });
+      setImage(null);
     } catch (err) {
       console.error(err);
       alert("Failed to post job");
@@ -108,6 +122,17 @@ export default function PostJob() {
             <option>Contract</option>
             <option>Internship</option>
           </select>
+
+          <div className="w-full border p-2 rounded">
+            <label htmlFor="image" className="block text-sm font-medium text-gray-700">Job Image</label>
+            <input
+              type="file"
+              name="image"
+              id="image"
+              onChange={handleImageChange}
+              className="mt-1"
+            />
+          </div>
 
           <button
             type="submit"

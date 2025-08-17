@@ -5,8 +5,10 @@ const getAll = async () => {
   return data;
 };
 
-const create = async (payload) => {
-  const { data } = await api.post('/jobs', payload);
+const create = async (formData) => {
+  const { data } = await api.post('/jobs', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' }
+  });
   return data;
 };
 
@@ -20,8 +22,10 @@ const getByEmployer = async () => {
   return data;
 };
 
-const update = async (id, payload) => {
-  const { data } = await api.put(`/jobs/${id}`, payload);
+const update = async (id, formData) => {
+  const { data } = await api.put(`/jobs/${id}`, formData, {
+    headers: { 'Content-Type': 'multipart/form-data' }
+  });
   return data;
 };
 

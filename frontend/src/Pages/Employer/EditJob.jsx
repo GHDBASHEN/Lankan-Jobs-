@@ -12,6 +12,8 @@ export default function EditJob() {
     salary: "",
     job_type: "Full-time",
   });
+  const [image, setImage] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     jobService.getById(id).then(setFormData).catch(console.error);
@@ -24,17 +26,39 @@ export default function EditJob() {
     });
   };
 
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0]);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await jobService.update(id, formData);
-    alert('Job updated successfully!');
-    nav('/my-jobs');
+    setLoading(true);
+
+    const data = new FormData();
+    for (const key in formData) {
+      data.append(key, formData[key]);
+    }
+    if (image) {
+      data.append('image', image);
+    }
+
+    try {
+      await jobService.update(id, data);
+      alert('Job updated successfully!');
+      nav('/my-jobs');
+    } catch (err) {
+      console.error(err);
+      alert('Failed to update job');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="container mx-auto p-6">
       <div className="bg-white shadow rounded p-6">
         <h1 className="text-2xl font-bold mb-4">Edit Job</h1>
+        {loading && <p className="text-indigo-600 font-medium">Loading...</p>}
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
             type="text"
@@ -88,9 +112,21 @@ export default function EditJob() {
             <option>Internship</option>
           </select>
 
+          <div className="w-full border p-2 rounded">
+            <label htmlFor="image" className="block text-sm font-medium text-gray-700">Job Image</label>
+            <input
+              type="file"
+              name="image"
+              id="image"
+              onChange={handleImageChange}
+              className="mt-1"
+            />
+          </div>
+
           <button
             type="submit"
             className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700"
+            disabled={loading}
           >
             Update Job
           </button>

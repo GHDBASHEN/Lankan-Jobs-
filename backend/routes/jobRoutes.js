@@ -1,4 +1,5 @@
 import express from 'express';
+import multer from 'multer';
 import { 
   createJob, 
   getJobs, 
@@ -11,11 +12,20 @@ import { authMiddleware } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-router.post('/', authMiddleware, createJob);
+const storage = multer.diskStorage({
+  destination: 'uploads/',
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + '-' + file.originalname);
+  }
+});
+
+const upload = multer({ storage });
+
+router.post('/', authMiddleware, upload.single('image'), createJob);
 router.get('/', getJobs);
 router.get('/my-jobs', authMiddleware, getJobsByEmployer);
 router.get('/:id', getJobById);
-router.put('/:id', authMiddleware, updateJob);
+router.put('/:id', authMiddleware, upload.single('image'), updateJob);
 router.delete('/:id', authMiddleware, deleteJob);
 
 export default router;

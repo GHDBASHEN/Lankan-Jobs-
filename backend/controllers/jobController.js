@@ -5,7 +5,8 @@ export const createJob = async (req, res) => {
     if (req.user.type !== 'Employer') return res.status(403).json({ message: 'Only employers can post jobs' });
 
     const { title, description, location, salary, job_type } = req.body;
-    const jobId = await Job.create(req.user.userId, title, description, location, salary, job_type);
+    const imagePath = req.file ? `/uploads/${req.file.filename}` : null;
+    const jobId = await Job.create(req.user.userId, title, description, location, salary, job_type, imagePath);
     res.status(201).json({ message: 'Job posted', jobId });
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -48,9 +49,12 @@ export const updateJob = async (req, res) => {
     const { title, description, location, salary, job_type } = req.body;
     const job = await Job.findById(req.params.id);
 
+    if (!job) return res.status(404).json({ message: 'Job not found' });
     if (job.employer_id !== req.user.userId) return res.status(403).json({ message: 'Unauthorized' });
 
-    await Job.update(req.params.id, title, description, location, salary, job_type);
+    const imagePath = req.file ? `/uploads/${req.file.filename}` : job.image_path;
+
+    await Job.update(req.params.id, title, description, location, salary, job_type, imagePath);
     res.json({ message: 'Job updated' });
   } catch (err) {
     res.status(500).json({ message: err.message });

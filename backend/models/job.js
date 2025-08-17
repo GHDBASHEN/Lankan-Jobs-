@@ -1,10 +1,10 @@
 import db from '../config/db.js';
 
 export const Job = {
-  create: async (employer_id, title, description, location, salary, job_type) => {
+  create: async (employer_id, title, description, location, salary, job_type, image_path) => {
     const [result] = await db.execute(
-      'INSERT INTO jobs (employer_id, title, description, location, salary, job_type) VALUES (?, ?, ?, ?, ?, ?)',
-      [employer_id, title, description, location, salary, job_type]
+      'INSERT INTO jobs (employer_id, title, description, location, salary, job_type, image_path) VALUES (?, ?, ?, ?, ?, ?, ?)',
+      [employer_id, title, description, location, salary, job_type, image_path]
     );
     return result.insertId;
   },
@@ -24,10 +24,10 @@ export const Job = {
     return rows[0];
   },
 
-  update: async (job_id, title, description, location, salary, job_type) => {
+  update: async (job_id, title, description, location, salary, job_type, image_path) => {
     const [result] = await db.execute(
-      'UPDATE jobs SET title = ?, description = ?, location = ?, salary = ?, job_type = ? WHERE job_id = ?',
-      [title, description, location, salary, job_type, job_id]
+      'UPDATE jobs SET title = ?, description = ?, location = ?, salary = ?, job_type = ?, image_path = ? WHERE job_id = ?',
+      [title, description, location, salary, job_type, image_path, job_id]
     );
     return result.affectedRows;
   },
