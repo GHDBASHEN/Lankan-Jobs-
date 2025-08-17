@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './Context/AuthContext';
 import Navbar from './Components/Navbar';
+import Footer from './Components/Footer'; // Import the Footer component
 import Home from './Pages/Home';
 import Jobs from './Pages/Jobs';
 import JobDetails from './Pages/JobDetails';
@@ -20,9 +21,9 @@ function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-        <div className="bg-gray-50 min-h-screen">
+        <div className="bg-gray-50 min-h-screen flex flex-col">
           <Navbar />
-          <main>
+          <main className="flex-grow">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/jobs" element={<Jobs />} />
@@ -38,6 +39,7 @@ function App() {
               <Route path="/my-applications" element={<ProtectedRoute role="Job Seeker"><MyApplications /></ProtectedRoute>} />
             </Routes>
           </main>
+          <Footer /> {/* Add the Footer component here */}
         </div>
       </BrowserRouter>
     </AuthProvider>

@@ -11,20 +11,20 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-white shadow">
-      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-        <Link to="/" className="font-bold text-xl">LankanJobs</Link>
-        <div className="flex gap-4 items-center">
-          <Link to="/jobs" className="hover:text-indigo-600">Jobs</Link>
+    <nav className="bg-white shadow-md">
+      <div className="container mx-auto px-6 py-3 flex justify-between items-center">
+        <Link to="/" className="text-2xl font-bold text-indigo-600">LankanJobs</Link>
+        <div className="flex items-center space-x-4">
+          <Link to="/jobs" className="text-gray-600 hover:text-indigo-600 transition-colors">Jobs</Link>
           {user ? (
             <>
-              <Link to="/dashboard" className="hover:text-indigo-600">Dashboard</Link>
-              <button onClick={handleLogout} className="bg-red-500 text-white px-3 py-1 rounded">Logout</button>
+              <Link to="/dashboard" className="text-gray-600 hover:text-indigo-600 transition-colors">Dashboard</Link>
+              <button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition-colors">Logout</button>
             </>
           ) : (
             <>
-              <Link to="/login" className="bg-indigo-600 text-white px-3 py-1 rounded">Login</Link>
-              <Link to="/register" className="border px-3 py-1 rounded">Register</Link>
+              <Link to="/login" className="text-gray-600 hover:text-indigo-600 transition-colors">Login</Link>
+              <Link to="/register" className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition-colors">Register</Link>
             </>
           )}
         </div>
