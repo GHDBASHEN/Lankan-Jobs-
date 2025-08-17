@@ -26,4 +26,14 @@ export const deleteResume = async (req, res) => {
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
-}
+};
+
+export const checkResume = async (req, res) => {
+    try {
+        if (req.user.type !== 'Job Seeker') return res.status(403).json({ message: 'Only job seekers can have a resume' });
+        const resume = await Resume.findBySeeker(req.user.userId);
+        res.json({ hasResume: !!resume });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};

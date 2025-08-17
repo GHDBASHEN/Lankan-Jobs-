@@ -20,21 +20,25 @@ function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/jobs" element={<Jobs />} />
-          <Route path="/jobs/:id" element={<JobDetails />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-          <Route path="/upload-resume" element={<ProtectedRoute role="Job Seeker"><UploadResume /></ProtectedRoute>} />
-          <Route path="/post-job" element={<ProtectedRoute role="Employer"><PostJob /></ProtectedRoute>} />
-          <Route path="/my-jobs" element={<ProtectedRoute role="Employer"><MyJobs /></ProtectedRoute>} />
-          <Route path="/edit-job/:id" element={<ProtectedRoute role="Employer"><EditJob /></ProtectedRoute>} />
-          <Route path="/applicants/:id" element={<ProtectedRoute role="Employer"><ViewApplicants /></ProtectedRoute>} />
-          <Route path="/my-applications" element={<ProtectedRoute role="Job Seeker"><MyApplications /></ProtectedRoute>} />
-        </Routes>
+        <div className="bg-gray-50 min-h-screen">
+          <Navbar />
+          <main>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/jobs" element={<Jobs />} />
+              <Route path="/jobs/:id" element={<JobDetails />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+              <Route path="/upload-resume" element={<ProtectedRoute role="Job Seeker"><UploadResume /></ProtectedRoute>} />
+              <Route path="/post-job" element={<ProtectedRoute role="Employer"><PostJob /></ProtectedRoute>} />
+              <Route path="/my-jobs" element={<ProtectedRoute role="Employer"><MyJobs /></ProtectedRoute>} />
+              <Route path="/edit-job/:id" element={<ProtectedRoute role="Employer"><EditJob /></ProtectedRoute>} />
+              <Route path="/applicants/:id" element={<ProtectedRoute role="Employer"><ViewApplicants /></ProtectedRoute>} />
+              <Route path="/my-applications" element={<ProtectedRoute role="Job Seeker"><MyApplications /></ProtectedRoute>} />
+            </Routes>
+          </main>
+        </div>
       </BrowserRouter>
     </AuthProvider>
   );

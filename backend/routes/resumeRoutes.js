@@ -1,6 +1,6 @@
 import express from 'express';
 import multer from 'multer';
-import { uploadResume, deleteResume } from '../controllers/resumeController.js';
+import { uploadResume, deleteResume,checkResume } from '../controllers/resumeController.js';
 import { authMiddleware } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
@@ -16,5 +16,5 @@ const upload = multer({ storage });
 
 router.post('/', authMiddleware, upload.single('resume'), uploadResume);
 router.delete('/', authMiddleware, deleteResume);
-
+router.get('/check', authMiddleware, checkResume);
 export default router;

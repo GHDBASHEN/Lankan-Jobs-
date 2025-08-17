@@ -12,6 +12,11 @@ const upload = async (file) => {
 const deleteResume = async () => {
     const { data } = await api.delete('/resumes');
     return data;
+};
+
+const checkResume = async () => {
+    const { data } = await api.get('/resumes/check');
+    return data;
 }
 
-export default { upload, deleteResume };
+export default { upload, deleteResume, checkResume };
