@@ -1,4 +1,4 @@
-# 🇱🇰 Lankan Jobs - Job Platform  
+# Lankan Jobs - Job Platform  
 
 Lankan Jobs is a **full-stack web application** designed to connect job seekers with employers in Sri Lanka.  
 It provides a seamless and intuitive platform for users to **find jobs, apply with their CVs**, and for employers to **post and manage job listings**.  
