@@ -25,11 +25,17 @@ module.exports = {
             opacity: '1',
             transform: 'translateY(0)'
           },
-        }
+        },
+        'text-gradient': {
+          'to': {
+            backgroundPosition: '200% center',
+          },
+        },
       },
       animation: {
         'fade-in-down': 'fade-in-down 0.5s ease-out',
         'fade-in-up': 'fade-in-up 0.5s ease-out 0.2s forwards',
+        'text-gradient': 'text-gradient 2s linear infinite',
       }
     },
   },

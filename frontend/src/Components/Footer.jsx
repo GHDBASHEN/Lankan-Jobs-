@@ -1,41 +1,39 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
     <footer className="bg-gray-800 text-white">
       <div className="container mx-auto px-6 py-8">
-        <div className="flex flex-wrap justify-between">
+        <div className="flex flex-wrap justify-between items-start text-center md:text-left">
           
-          {/* About Section */}
-          <div className="w-full md:w-1/3 lg:w-1/4 mb-6 md:mb-0">
-            <h2 className="text-2xl font-bold text-indigo-400 mb-2">LankanJobs</h2>
-            <p className="text-gray-400">
-              Connecting talent with opportunity in Sri Lanka. Your next career move is just a click away.
+          {/* About Section (Left) */}
+          <div className="w-full md:w-1/3 mb-6 md:mb-0">
+            <h2 className="text-3xl font-bold animate-text-gradient bg-gradient-to-r from-indigo-400 via-purple-500 to-indigo-400 bg-clip-text text-transparent">
+              LankanJobs
+            </h2>
+            <p className="text-gray-400 mt-2">
+              Connecting talent with opportunity in Sri Lanka.
             </p>
           </div>
 
-          {/* Links Section */}
-          <div className="w-full sm:w-1/2 md:w-1/4 mb-6 md:mb-0">
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-            <ul>
-              <li className="mb-2"><Link to="/" className="hover:text-indigo-400 transition-colors">Home</Link></li>
-              <li className="mb-2"><Link to="/jobs" className="hover:text-indigo-400 transition-colors">Find a Job</Link></li>
-              <li className="mb-2"><Link to="/dashboard" className="hover:text-indigo-400 transition-colors">Dashboard</Link></li>
-            </ul>
+          {/* Contact Section (Center) */}
+          <div className="w-full md:w-1/3 mb-6 md:mb-0">
+            <h3 className="text-lg font-semibold mb-2">Contact Us</h3>
+            <p className="text-gray-400">Kalutara, Sri Lanka</p>
+            <p className="text-gray-400">Ashen : 0779754633</p>
           </div>
 
-          {/* Social Media Section */}
-          <div className="w-full sm:w-1/2 md:w-1/4 mb-6 md:mb-0">
-            <h3 className="text-lg font-semibold mb-4">Follow Us</h3>
-            <div className="flex space-x-4">
+          {/* Social Media Section (Right) */}
+          <div className="w-full md:w-1/3 mb-6 md:mb-0 md:text-right">
+            <h3 className="text-lg font-semibold mb-2">Follow Me</h3>
+            <div className="flex justify-center md:justify-end space-x-4">
               <a href="https://github.com/GHDBASHEN" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path fillRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.942.359.308.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clipRule="evenodd" />
                 </svg>
               </a>
               <a href="https://www.linkedin.com/in/basith-ashen-a9b38a379/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                 </svg>
               </a>
