@@ -9,4 +9,9 @@ const upload = async (file) => {
   return data;
 };
 
-export default { upload };
+const deleteResume = async () => {
+    const { data } = await api.delete('/resumes');
+    return data;
+}
+
+export default { upload, deleteResume };

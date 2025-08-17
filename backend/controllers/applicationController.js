@@ -22,3 +22,13 @@ export const getAppliedJobs = async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 };
+
+export const getApplicantsByJob = async (req, res) => {
+    try {
+        if (req.user.type !== 'Employer') return res.status(403).json({ message: 'Only employers can view applicants' });
+        const applicants = await Application.findByJob(req.params.id);
+        res.json(applicants);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};

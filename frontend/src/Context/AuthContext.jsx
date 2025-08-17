@@ -12,8 +12,13 @@ export const AuthProvider = ({ children }) => {
     if (token) {
       try {
         const decoded = jwtDecode(token);
-        // you can expand by fetching full user profile if needed
-        setUser({ userId: decoded.userId, type: decoded.type });
+        // Set the user state with details from the token
+        setUser({ 
+          userId: decoded.userId, 
+          type: decoded.type, 
+          name: decoded.name, 
+          email: decoded.email 
+        });
         localStorage.setItem('token', token);
       } catch {
         setUser(null);

@@ -15,4 +15,24 @@ const getById = async (id) => {
   return data;
 };
 
-export default { getAll, create, getById };
+const getByEmployer = async () => {
+  const { data } = await api.get('/jobs/my-jobs');
+  return data;
+};
+
+const update = async (id, payload) => {
+  const { data } = await api.put(`/jobs/${id}`, payload);
+  return data;
+};
+
+const remove = async (id) => {
+  const { data } = await api.delete(`/jobs/${id}`);
+  return data;
+};
+
+const getApplicants = async (id) => {
+    const {data} = await api.get(`/applications/job/${id}`);
+    return data;
+}
+
+export default { getAll, create, getById, getByEmployer, update, remove, getApplicants };

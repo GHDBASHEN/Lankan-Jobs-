@@ -10,7 +10,10 @@ export const Application = {
   },
 
   findByJob: async (job_id) => {
-    const [rows] = await db.execute('SELECT * FROM applications WHERE job_id = ?', [job_id]);
+    const [rows] = await db.execute(
+      'SELECT u.user_id, u.name, u.email, r.file_path FROM users u JOIN applications a ON u.user_id = a.seeker_id LEFT JOIN resumes r ON u.user_id = r.seeker_id WHERE a.job_id = ?',
+      [job_id]
+    );
     return rows;
   },
 
