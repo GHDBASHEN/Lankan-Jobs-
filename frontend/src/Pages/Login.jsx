@@ -11,10 +11,14 @@ export default function Login() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // This effect will run when the 'user' object changes.
-    // If the user is successfully logged in, it will redirect to the dashboard.
+    // This effect runs after the user state is updated.
     if (user) {
-      navigate('/dashboard');
+      // Check the user type and redirect accordingly.
+      if (user.type === 'Admin') {
+        navigate('/admin');
+      } else {
+        navigate('/dashboard');
+      }
     }
   }, [user, navigate]);
 
@@ -24,7 +28,7 @@ export default function Login() {
     setLoading(true);
     try {
       const res = await login(email, password);
-      // After calling login, the useEffect will handle the redirect.
+      // After a successful login, the useEffect above will handle the redirect.
       if (!res?.token) {
         setError(res?.message || 'Login failed. Please check your credentials.');
       }

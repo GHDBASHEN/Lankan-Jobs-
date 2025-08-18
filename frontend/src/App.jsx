@@ -16,6 +16,11 @@ import MyJobs from './Pages/Employer/MyJobs';
 import EditJob from './Pages/Employer/EditJob';
 import ViewApplicants from './Pages/Employer/ViewApplicants';
 import MyApplications from './Pages/MyApplications';
+import AdminDashboard from './Pages/Admin/AdminDashboard';
+import ManageUsers from './Pages/Admin/ManageUsers';
+import ManageJobs from './Pages/Admin/ManageJobs';
+import AdminRoute from './Components/AdminRoute';
+import AdminRegister from './Pages/Admin/AdminRegister';
 
 function App() {
   return (
@@ -37,6 +42,10 @@ function App() {
               <Route path="/edit-job/:id" element={<ProtectedRoute role="Employer"><EditJob /></ProtectedRoute>} />
               <Route path="/applicants/:id" element={<ProtectedRoute role="Employer"><ViewApplicants /></ProtectedRoute>} />
               <Route path="/my-applications" element={<ProtectedRoute role="Job Seeker"><MyApplications /></ProtectedRoute>} />
+              <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
+              <Route path="/admin/users" element={<AdminRoute><ManageUsers /></AdminRoute>} />
+              <Route path="/admin/jobs" element={<AdminRoute><ManageJobs /></AdminRoute>} />
+               <Route path="/admin/register" element={<AdminRoute><AdminRegister /></AdminRoute>} />
             </Routes>
           </main>
           <Footer /> {/* Add the Footer component here */}

@@ -12,5 +12,15 @@ export const User = {
   findByEmail: async (email) => {
     const [rows] = await db.execute('SELECT * FROM users WHERE email = ?', [email]);
     return rows[0];
-  }
+  },
+
+  findAll: async () => {
+    const [rows] = await db.execute('SELECT user_id, name, email, phone, user_type FROM users');
+    return rows;
+  },
+
+  delete: async (id) => {
+    await db.execute('DELETE FROM users WHERE user_id = ?', [id]);
+  },
+
 };

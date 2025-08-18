@@ -35,5 +35,10 @@ export const Job = {
   delete: async (job_id) => {
     const [result] = await db.execute('DELETE FROM jobs WHERE job_id = ?', [job_id]);
     return result.affectedRows;
+  },
+
+  findAllAdmin: async () => {
+    const [rows] = await db.execute('SELECT * FROM jobs');
+    return rows;
   }
 };

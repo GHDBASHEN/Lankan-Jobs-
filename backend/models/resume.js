@@ -25,7 +25,13 @@ export const Resume = {
   delete: async (seeker_id) => {
     const [result] = await db.execute('DELETE FROM resumes WHERE seeker_id = ?', [seeker_id]);
     return result.affectedRows;
-  }
+  },
+  
+  findAll: async () => {
+    const [rows] = await db.execute('SELECT * FROM resumes');
+    return rows;
+  },
+
 };
 
 export const checkResume = async (req, res) => {
@@ -36,4 +42,5 @@ export const checkResume = async (req, res) => {
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
+
 };
