@@ -2,6 +2,7 @@ import { User } from '../models/user.js';
 import { Job } from '../models/job.js';
 import { Application } from '../models/application.js';
 import { Resume } from '../models/resume.js';
+import bcrypt from 'bcryptjs';
 
 // User Management
 export const getAllUsers = async (req, res) => {
