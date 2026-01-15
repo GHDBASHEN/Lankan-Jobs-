@@ -1,13 +1,13 @@
-import { User } from '../models/user.js';
-import { Job } from '../models/job.js';
-import { Application } from '../models/application.js';
-import { Resume } from '../models/resume.js';
+import { UserModel } from '../models/user.js';
+import { JobModel } from '../models/job.js';
+import { ApplicationModel } from '../models/application.js';
+import { ResumeModel } from '../models/resume.js';
 import bcrypt from 'bcryptjs';
 
 // User Management
 export const getAllUsers = async (req, res) => {
     try {
-        const users = await User.findAll();
+        const users = await UserModel.findAll();
         res.json(users);
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -16,7 +16,7 @@ export const getAllUsers = async (req, res) => {
 
 export const deleteUser = async (req, res) => {
     try {
-        await User.delete(req.params.id);
+        await UserModel.delete(req.params.id);
         res.json({ message: 'User deleted' });
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -26,7 +26,7 @@ export const deleteUser = async (req, res) => {
 // Job Management
 export const getAllJobs = async (req, res) => {
     try {
-        const jobs = await Job.findAllAdmin();
+        const jobs = await JobModel.findAllAdmin();
         res.json(jobs);
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -35,7 +35,7 @@ export const getAllJobs = async (req, res) => {
 
 export const deleteJob = async (req, res) => {
     try {
-        await Job.delete(req.params.id);
+        await JobModel.delete(req.params.id);
         res.json({ message: 'Job deleted' });
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -45,7 +45,7 @@ export const deleteJob = async (req, res) => {
 // Application Management
 export const getAllApplications = async (req, res) => {
     try {
-        const applications = await Application.findAll();
+        const applications = await ApplicationModel.findAll();
         res.json(applications);
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -55,7 +55,7 @@ export const getAllApplications = async (req, res) => {
 // Resume Management
 export const getAllResumes = async (req, res) => {
     try {
-        const resumes = await Resume.findAll();
+        const resumes = await ResumeModel.findAll();
         res.json(resumes);
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -67,7 +67,7 @@ export const createAdmin = async (req, res) => {
         const { name, email, password, phone } = req.body;
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        const userId = await User.create(name, email, hashedPassword, phone, 'Admin');
+        const userId = await UserModel.create(name, email, hashedPassword, phone, 'Admin');
         res.status(201).json({ message: 'Admin user registered successfully', userId });
     } catch (err) {
         // Check for duplicate email error
