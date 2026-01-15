@@ -12,28 +12,30 @@ import resumeRoutes from './routes/resumeRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
 
 dotenv.config();
-connectDB(); // Initialize MongoDB connection
+connectDB(); 
 
-// Create uploads directory if it doesn't exist
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const uploadsDir = path.join(__dirname, 'uploads');
+
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });
 }
 
 const app = express();
 
+// --- CORS CONFIGURATION START ---
+// Only use ONE cors middleware configuration
 app.use(cors({
-  origin: 'https://lankan-jobs.vercel.app', 
+  origin: ['https://lankan-jobs.vercel.app', 'http://localhost:3000'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
 
-
-
+// Handle preflight requests explicitly
 app.options('*', cors());
+// --- CORS CONFIGURATION END ---
 
 app.use(express.json());
 app.use('/uploads', express.static('uploads'));
@@ -44,9 +46,9 @@ app.use('/api/applications', applicationRoutes);
 app.use('/api/resumes', resumeRoutes);
 app.use('/api/admin', adminRoutes);
 
-// const PORT = process.env.PORT || 5000;
-// app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
+app.get('/', (req, res) => {
+  res.send('API is running...');
+});
 
 if (process.env.NODE_ENV !== 'production') {
   const PORT = process.env.PORT || 5000;
