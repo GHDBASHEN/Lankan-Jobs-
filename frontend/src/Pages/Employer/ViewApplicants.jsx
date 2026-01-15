@@ -19,7 +19,7 @@ export default function ViewApplicants() {
             {applicants.map(app => (
               <li key={app.user_id} className="border-b py-2">
                 <p><strong>{app.name}</strong> ({app.email})</p>
-                {app.file_path && <a href={`http://localhost:5000${app.file_path}`} target="_blank" rel="noopener noreferrer" className="text-indigo-600">View Resume</a>}
+                {app.file_path && <a href={`https://lankan-jobs-backend.vercel.app:5000${app.file_path}`} target="_blank" rel="noopener noreferrer" className="text-indigo-600">View Resume</a>}
               </li>
             ))}
           </ul>

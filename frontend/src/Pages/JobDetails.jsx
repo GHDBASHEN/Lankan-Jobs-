@@ -46,7 +46,7 @@ export default function JobDetails() {
       <div className="bg-white shadow-xl rounded-lg overflow-hidden">
         {job.image_path && (
           <img 
-            src={`http://localhost:5000${job.image_path}`} 
+            src={`https://lankan-jobs-backend.vercel.app:5000${job.image_path}`} 
             alt={job.title} 
             className="w-full h-64 object-cover"
           />
