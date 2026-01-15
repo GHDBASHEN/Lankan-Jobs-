@@ -24,6 +24,11 @@ if (!fs.existsSync(uploadsDir)) {
 
 const app = express();
 
+app.use(cors({
+  origin: ['https://lankan-jobs.vercel.app', 'http://localhost:3000'],
+  credentials: true
+}));
+
 app.use(cors());
 app.use(express.json());
 app.use('/uploads', express.static('uploads'));
@@ -34,5 +39,13 @@ app.use('/api/applications', applicationRoutes);
 app.use('/api/resumes', resumeRoutes);
 app.use('/api/admin', adminRoutes);
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// const PORT = process.env.PORT || 5000;
+// app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+
+if (process.env.NODE_ENV !== 'production') {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
+
+export default app;
