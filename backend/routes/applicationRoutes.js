@@ -6,7 +6,7 @@ import { authMiddleware } from '../middleware/authMiddleware.js';
 const router = express.Router();
 
 router.post('/', authMiddleware, applyJob);
-router.get('/my-applications', authMiddleware, getAppliedJobs);
 router.get('/job/:id', authMiddleware, getApplicantsByJob);
+router.get('/my-applications', authMiddleware, getAppliedJobs);
 
 export default router;

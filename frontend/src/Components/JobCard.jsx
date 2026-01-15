@@ -11,7 +11,7 @@ export default function JobCard({ job }) {
       </div>
       <div className="mt-4 flex justify-between items-center">
         <div className="text-indigo-600 font-semibold">{job.salary ? `Rs ${job.salary}` : 'Competitive Salary'}</div>
-        <Link to={`/jobs/${job.job_id}`} className="text-sm text-white bg-indigo-600 px-4 py-2 rounded-md hover:bg-indigo-700 transition-colors">View Job</Link>
+        <Link to={`/jobs/${job._id}`} className="text-sm text-white bg-indigo-600 px-4 py-2 rounded-md hover:bg-indigo-700 transition-colors">View Job</Link>
       </div>
     </div>
   );
