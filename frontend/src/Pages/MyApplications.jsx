@@ -15,13 +15,13 @@ export default function MyApplications() {
       {jobs.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {jobs.map(job => (
-            <div key={job.job_id} className="bg-white shadow-lg rounded-lg p-6 flex flex-col justify-between">
+            <div key={job._id} className="bg-white shadow-lg rounded-lg p-6 flex flex-col justify-between">
               <div>
                 <h3 className="text-xl font-bold text-gray-800">{job.title}</h3>
                 <p className="text-md text-gray-600 mt-1">{job.location} • <span className="font-semibold text-indigo-600">{job.job_type}</span></p>
               </div>
               <div className="mt-4 flex justify-end">
-                <Link to={`/jobs/${job.job_id}`} className="text-sm text-white bg-indigo-600 px-4 py-2 rounded-md hover:bg-indigo-700 transition-colors">View Job</Link>
+                <Link to={`/jobs/${job._id}`} className="text-sm text-white bg-indigo-600 px-4 py-2 rounded-md hover:bg-indigo-700 transition-colors">View Job</Link>
               </div>
             </div>
           ))}

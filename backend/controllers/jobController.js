@@ -6,9 +6,10 @@ export const createJob = async (req, res) => {
 
     const { title, description, location, salary, job_type } = req.body;
     const imagePath = req.file ? `/uploads/${req.file.filename}` : null;
-    const jobId = await JobModel.create(req.user.userId, title, description, location, salary, job_type, imagePath);
-    res.status(201).json({ message: 'Job posted', jobId });
+    const job = await JobModel.create(req.user.userId, title, description, location, salary, job_type, imagePath);
+    res.status(201).json({ message: 'Job posted', jobId: job._id });
   } catch (err) {
+    console.error('Create Job Error:', err);
     res.status(500).json({ message: err.message });
   }
 };
@@ -50,13 +51,14 @@ export const updateJob = async (req, res) => {
     const job = await JobModel.findById(req.params.id);
 
     if (!job) return res.status(404).json({ message: 'Job not found' });
-    if (job.employer_id !== req.user.userId) return res.status(403).json({ message: 'Unauthorized' });
+    if (job.employer_id.toString() !== req.user.userId.toString()) return res.status(403).json({ message: 'Unauthorized' });
 
     const imagePath = req.file ? `/uploads/${req.file.filename}` : job.image_path;
 
     await JobModel.update(req.params.id, title, description, location, salary, job_type, imagePath);
     res.json({ message: 'Job updated' });
   } catch (err) {
+    console.error('Update Job Error:', err);
     res.status(500).json({ message: err.message });
   }
 };
@@ -67,11 +69,12 @@ export const deleteJob = async (req, res) => {
     
     const job = await JobModel.findById(req.params.id);
 
-    if (job.employer_id !== req.user.userId) return res.status(403).json({ message: 'Unauthorized' });
+    if (job.employer_id.toString() !== req.user.userId.toString()) return res.status(403).json({ message: 'Unauthorized' });
     
     await JobModel.delete(req.params.id);
     res.json({ message: 'Job deleted' });
   } catch (err) {
+    console.error('Delete Job Error:', err);
     res.status(500).json({ message: err.message });
   }
 };

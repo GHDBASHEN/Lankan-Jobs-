@@ -11,7 +11,7 @@ export default function ManageJobs() {
     const handleDelete = async (id) => {
         if (window.confirm('Are you sure you want to delete this job?')) {
             await adminService.deleteJob(id);
-            setJobs(jobs.filter(j => j.job_id !== id));
+            setJobs(jobs.filter(j => j._id !== id));
         }
     };
 
@@ -30,12 +30,12 @@ export default function ManageJobs() {
                     </thead>
                     <tbody className="text-gray-700">
                         {jobs.map(job => (
-                            <tr key={job.job_id}>
-                                <td className="py-3 px-4">{job.job_id}</td>
+                            <tr key={job._id}>
+                                <td className="py-3 px-4">{job._id}</td>
                                 <td className="py-3 px-4">{job.title}</td>
                                 <td className="py-3 px-4">{job.employer_id}</td>
                                 <td className="py-3 px-4">
-                                    <button onClick={() => handleDelete(job.job_id)} className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">Delete</button>
+                                    <button onClick={() => handleDelete(job._id)} className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">Delete</button>
                                 </td>
                             </tr>
                         ))}

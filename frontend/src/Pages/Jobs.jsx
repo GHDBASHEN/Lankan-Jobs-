@@ -30,7 +30,7 @@ export default function Jobs() {
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredJobs.map(j => <JobCard key={j.job_id} job={j} />)}
+        {filteredJobs.map(j => <JobCard key={j._id} job={j} />)}
       </div>
     </div>
   );
