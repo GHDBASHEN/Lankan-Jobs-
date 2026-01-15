@@ -25,8 +25,13 @@ if (!fs.existsSync(uploadsDir)) {
 const app = express();
 
 app.use(cors({
-  origin: ['https://lankan-jobs.vercel.app', 'http://localhost:3000'],
-  credentials: true
+  origin: [
+    'https://lankan-jobs.vercel.app', // Your production frontend
+    'http://localhost:3000'           // For local testing
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 app.use(cors());

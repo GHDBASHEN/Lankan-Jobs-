@@ -2,6 +2,9 @@ import axios from 'axios';
 
 const api = axios.create({
   baseURL:'https://lankan-jobs-backend.vercel.app/api',
+  headers: {
+    'Content-Type': 'application/json'
+  }
 });
 
 // attach token if present
